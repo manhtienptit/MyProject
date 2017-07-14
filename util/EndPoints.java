@@ -1,0 +1,19 @@
+package com.seatgeek.placesautocompletedemo.util;
+
+/**
+ * Created by Lincoln on 06/01/16.
+ */
+public class EndPoints {
+
+    // localhost url
+    // public static final String BASE_URL = "http://192.168.0.101/gcm_chat/v1";
+
+    public static final String BASE_URL = "http://159.203.102.112/bookcar/v1";
+    public static final String LOGIN = BASE_URL + "/user/login";
+    public static final String USER = BASE_URL + "/user/_ID_";
+    public static final String GET_COMMENTS = BASE_URL + "/all_comment/_ID_";
+    public static final String FEEDS_COUNT = BASE_URL + "/all_group";
+    public static final String CHAT_THREAD = BASE_URL + "/chat_rooms/_ID_/_LIMIT_/_FROM_";
+    public static final String CLASS_NAME = BASE_URL + "/getDataclassName/_WEB_";
+    public static final String CHAT_ROOM_MESSAGE = BASE_URL + "/chat_rooms/_ID_/message";
+}
