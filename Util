@@ -1,0 +1,100 @@
+package com.jingle.firebase.plugin.online.util;
+
+/**
+ * Created by manhtien on 4/22/16.
+ */
+
+
+import android.app.ActivityManager;
+import android.content.ComponentName;
+import android.content.Context;
+import android.os.Build;
+
+import java.util.List;
+
+/**
+ * Implements common utility methods.
+ */
+public class Utility {
+
+    public static String ID_PRE_COIN = "COIN_PRE";
+
+
+
+
+    public static String DRAWID = "http.chess";
+
+    public static int WIN = 0;
+	public static int DRAW = 0;
+	public static int LOSE = 0;
+	public static int COIN = 0;
+
+
+    public static int WIN_DB = 1;
+    public static int DRAW_DB = 2;
+    public static int LOSE_DB = -1;
+
+    public static int IsHostRoom = 1111;
+    public static int IsGuestRoom = 1001;
+    
+    public static boolean IsYourTurn = false;
+    
+    public static int LOGINMODE = 10;
+    public static int ROOMMODE = 11;
+    public static int INGAMEMODE = 12;
+    
+    public static int WAITINGFRIEND = -100;
+    public static int GAMEISPLAYING = -102;
+    public static int GAMEISENDING = -103;
+    public static int FRIENDJOINED = -101;
+    public static int IsLoseGame = -104;
+	public static int IsWinGame = -105;
+	public static int IsDrawGame = -106;
+
+    public static int PROMOTEROOK = 1234;
+    public static int PROMOTEBISHOP = 1235;
+    public static int PROMOTEKNIGHT = 1236;
+    public static int PROMOTEQUEEN = 1237;
+
+
+    public static int STATUSMOVE = 1337;
+
+
+    public static String packDemo = "android.test.purchased";
+    public static String pack1 = "com.http.chess.pack1";
+    public static String pack2 = "com.http.chess.pack2";
+    public static String pack3 = "com.http.chess.pack3";
+    public static String pack4 = "com.http.chess.pack4";
+    public static String pack5 = "com.http.chess.pack5";
+
+
+    public static int STATUSREADYGAME = 100007;
+    public static int STATUSNOREADYGAME = 100008;
+
+    public static boolean isAppIsInBackground(Context context) {
+        boolean isInBackground = true;
+        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT_WATCH) {
+            List<ActivityManager.RunningAppProcessInfo> runningProcesses = am.getRunningAppProcesses();
+            for (ActivityManager.RunningAppProcessInfo processInfo : runningProcesses) {
+                if (processInfo.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
+                    for (String activeProcess : processInfo.pkgList) {
+                        if (activeProcess.equals(context.getPackageName())) {
+                            isInBackground = false;
+                        }
+                    }
+                }
+            }
+        } else {
+            List<ActivityManager.RunningTaskInfo> taskInfo = am.getRunningTasks(1);
+            ComponentName componentInfo = taskInfo.get(0).topActivity;
+            if (componentInfo.getPackageName().equals(context.getPackageName())) {
+                isInBackground = false;
+            }
+        }
+
+        return isInBackground;
+    }
+
+
+}
